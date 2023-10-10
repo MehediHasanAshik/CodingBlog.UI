@@ -1,0 +1,44 @@
+<div class="card h-100">
+    <div class="card-header">
+        <h3 class="card-title">Images</h3>
+    </div>
+    <div class="card-body">
+        <div class="d-flex flex-md-row flex-sm-column flex-wrap">
+            <div class="col-8 p-4">
+                <div class="col-8 p-4" style="overflow-y: scroll;">
+                    <ng-container *ngIf="blogImages">
+                        <div class="d-flex flex-wrap">
+                            <div *ngFor="let images of blogImages" (click)="selectImage(images)"
+                                style="min-width: 100px; justify-content: center; cursor: pointer;"
+                                class="me-2 bg-white d-flex align-items-center flex-column border p-3">
+                                <img height="100px" width="100px" [src]="images.url" [title]="images.title">
+                                <span class="mt-1">{{images.title}}</span>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+            <div class="col-4 p-4 bg-light">
+                <h5>Upload Image</h5>
+                <form #form="ngForm" (ngSubmit)="uploadImage()">
+                    <div class="my-2">
+                        <input type="file" class="form-control" (change)="onFileUpload($event)">
+                    </div>
+
+                    <div class="my-2">
+                        <input type="text" class="form-control" placeholder="File Name" name="filename"
+                            [(ngModel)]="fileName">
+                    </div>
+
+                    <div class="my-2">
+                        <input type="text" class="form-control" placeholder="Title" name="Title" [(ngModel)]="title">
+                    </div>
+
+                    <div class="my-2">
+                        <button class="btn btn-primary" type="submit">Upload</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
