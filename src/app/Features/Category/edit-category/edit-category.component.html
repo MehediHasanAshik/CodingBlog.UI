@@ -1,0 +1,67 @@
+<div class="container">
+    <h1 class="mt-3">EDIT Category</h1>
+
+    <div *ngIf="displayAlert" class="alert alert-success text-center" role="alert">
+        Category Updated Successfully!
+    </div>
+
+    <div *ngIf="isDeleted" class="alert alert-danger" role="alert">
+        Category Deleted Successfully!
+    </div>
+
+    <ng-template #notFound>
+        <div class="alert alert-danger" role="alert">
+            NO Category FOUND
+        </div>
+    </ng-template>
+
+    <ng-container *ngIf="category; else notFound">
+        <form #form="ngForm" (submit)="OnUpdate()">
+            <div class="mt-2">
+                <div class="mt-3">
+                    <label class="form-label mb-1" for="category">Category ID</label>
+                    <input type="text" id="categoryId" class="form-control" name="categoryId" value={{category.id}}
+                        readonly>
+                </div>
+
+                <div class="mt-3">
+                    <label class="form-label mb-1" for="category">Category Name</label>
+                    <input type="text" id="categoryName" class="form-control" name="categoryName"
+                        [(ngModel)]="category.name">
+                </div>
+
+                <div class="mt-3">
+                    <label class="form-label mb-1" for="category">Category URL Handle</label>
+                    <input type="text" id="categoryurlhandle" class="form-control" name="categoryurlhandle"
+                        [(ngModel)]="category.urlHandle">
+                </div>
+
+                <div class="mt-3">
+                    <button class="btn btn-primary" type="submit">Update</button>
+                    <button class="btn btn-danger mx-3" type="button" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">Delete</button>
+                </div>
+            </div>
+        </form>
+    </ng-container>
+
+    <div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-danger" id="exampleModalLabel">!! WARNING !!</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Do You Really Want to Delete The Category?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-danger"  data-bs-dismiss="modal" (click)="OnDelete()">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="container">
+    <h1 class="mt-3">Add a New Category</h1>
+
+    <div *ngIf="displayAlert" class="alert alert-success" role="alert">
+        New Category Added Successfully!
+    </div>
+
+    <form #form="ngForm" (submit)="OnSubmit()">
+        <div class="mt-2">
+            <div class="mt-3">
+                <label class="form=label mb-1" for="category">Category Name</label>
+                <input type="text" id="categoryName" class="form-control" name="categoryName"
+                    placeholder="Enter The Name" [(ngModel)]="model.name">
+            </div>
+
+            <div class="mt-3">
+                <label class="form=label mb-1" for="category">Category URL Handle</label>
+                <input type="text" id="categoryurlhandle" class="form-control" name="categoryurlhandle"
+                    placeholder="Enter The URL Handle of Category" [(ngModel)]="model.urlHandle">
+            </div>
+
+            <div class="mt-3">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
